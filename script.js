@@ -110,6 +110,23 @@ function displaySearchHistory(history) {
     searchHistory.appendChild(historyItem);
   }
 }
+// Function to save searched city to search history
+function saveToSearchHistory(city) {
+  let history = localStorage.getItem('searchHistory');
+
+  if (history) {
+    history = JSON.parse(history);
+    if (!history.includes(city)) {
+      history.push(city);
+      localStorage.setItem('searchHistory', JSON.stringify(history));
+    }
+  } else {
+    localStorage.setItem('searchHistory', JSON.stringify([city]));
+  }
+
+  displaySearchHistory(history);
+}
+
 
 // Event listener for form submission
 const searchForm = document.getElementById('search-form');
