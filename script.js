@@ -92,6 +92,24 @@ function handleFormSubmit(event) {
     cityInput.value = '';
   }
 }
+// Function to display search history
+function displaySearchHistory(history) {
+  const searchHistory = document.getElementById('search-history');
+  searchHistory.innerHTML = '';
+
+  for (let i = 0; i < history.length; i++) {
+    const city = history[i];
+
+    const historyItem = document.createElement('div');
+    historyItem.classList.add('search-history-item');
+    historyItem.textContent = city;
+    historyItem.addEventListener('click', () => {
+      searchCity(city);
+    });
+
+    searchHistory.appendChild(historyItem);
+  }
+}
 
 // Event listener for form submission
 const searchForm = document.getElementById('search-form');
