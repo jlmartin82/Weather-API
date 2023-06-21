@@ -1,5 +1,5 @@
 // API key for accessing weather data
-const apiKey = "";
+const apiKey = "5bae2a16c379685ad883d85bd03b0d53";
 
 
 
