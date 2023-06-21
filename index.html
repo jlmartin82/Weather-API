@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Weather Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Day.js Example</title>
+      <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7"></script>
+    </head>
+    <body>
+      <script>
+        const now = dayjs();
 
-<body>
-  <header>
-    <h1>Weather Dashboard</h1>
-    <form id="search-form">
-      <input type="text" id="city-input" placeholder="Enter city">
-      <button type="submit">Search</button>
-    </form>
-  </header>
+        const formattedDate = now.format("YYYY-MM-DD HH:mm:ss");
 
-  <main>
-    <div id="current-weather"></div>
-    <div id="forecast"></div>
-  </main>
+        const outputElement = document.createElement("p");
+        outputElement.textContent = `Current date and time: ${formattedDate}`;
+        document.body.appendChild(outputElement);
+      </script>
+    </body>
+  </html>
 
-  <footer>
-    <h2>Search History</h2>
-    <div id="search-history"></div>
-  </footer>
+  <body>
+    <header>
+      <h1>Weather Dashboard</h1>
+      <form id="search-form">
+        <input type="text" id="city-input" placeholder="Enter city" />
+        <button type="submit">Search</button>
+      </form>
+    </header>
 
-  <script src="script.js"></script>
-</body>
+    <main>
+      <div id="current-weather"></div>
+      <div id="forecast"></div>
+    </main>
+
+    <footer>
+      <h2>Search History</h2>
+      <div id="search-history"></div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
