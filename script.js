@@ -1,5 +1,5 @@
 // API key for accessing weather data
-const apiKey = "5bae2a16c379685ad883d85bd03b0d53";
+const apiKey = "";
 
 // Function to fetch weather data for a given city
 async function getWeatherData(city) {
@@ -32,7 +32,7 @@ function displayCurrentWeather(data) {
     <div class="weather-card">
       <h2>${name} - ${date}</h2>
       <img src="http://openweathermap.org/img/wn/${weatherIcon}.png" alt="Weather Icon">
-      <p>Temperature: ${temperature} &#8451;</p>
+      <p>Temperature: ${temperature} &#x2109;</p>
       <p>Humidity: ${humidity}%</p>
       <p>Wind Speed: ${windSpeed} m/s</p>
     </div>
@@ -121,6 +121,45 @@ function saveToSearchHistory(city) {
   }
 
   displaySearchHistory(history);
+}
+
+// Function to retrieve search history from local storage
+function getSearchHistory() {
+  const history = localStorage.getItem("searchHistory");
+
+  if (history) {
+    return JSON.parse(history);
+  }
+
+  return [];
+}
+
+// Function to handle form submission
+function handleFormSubmit(event) {
+  event.preventDefault();
+  const cityInput = document.getElementById("city-input");
+  const city = cityInput.value.trim();
+
+  if (city) {
+    searchCity(city);
+    cityInput.value = "";
+  }
+}
+
+// Function to search for a city and display weather data
+function searchCity(city) {
+  getWeatherData(city)
+    .then((data) => {
+      displayCurrentWeather(data);
+      return getForecastData(city);
+    })
+    .then((data) => {
+      displayForecast(data);
+      saveToSearchHistory(city);
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
 }
 
 // Event listener for form submission
